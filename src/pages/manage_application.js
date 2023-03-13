@@ -39,15 +39,14 @@ function MyTable(props) {
     return
   }
 
-  useEffect(() => {
   const handleRowReject = (name) => {
     const curr_members = selectedMember
     const index = curr_members.indexOf(name)
     const x = curr_members.splice(index, 1)
     setSelectedRow(curr_members)
     return
-  }})
-
+  }
+  
   return (
     <Table>
       <Thead>
