@@ -61,7 +61,7 @@ const Cca_application = () => {
     return cca_render
   };
 
-  const cca_selected = []
+  const cca_selected = [] // would need to make this a function to initialise the page and selected cca
 
   const handleClick = (cca) => {
     // this.setActive(!this.active);
