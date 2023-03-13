@@ -39,14 +39,13 @@ function MyTable(props) {
     return
   }
 
-  useEffect(() => {
   const handleRowReject = (name) => {
     const curr_members = selectedMember
     const index = curr_members.indexOf(name)
     const x = curr_members.splice(index, 1)
     setSelectedRow(curr_members)
     return
-  }})
+  }
 
   return (
     <Table>
@@ -81,14 +80,14 @@ function MyTable(props) {
                 aria-label='Accept'
                 size='lg'
                 icon={<CheckIcon />}
-                onClick={handleRowAccept(row.name)}
+                // onClick={handleRowAccept(row.name)}
               />
               <IconButton
                 colorScheme='gray'
                 aria-label='Reject'
                 size='lg'
                 icon={<CloseIcon />}
-                onClick={handleRowReject(row.name)}
+                // onClick={handleRowReject(row.name)}/
               />
             </Stack>
             </Td>
