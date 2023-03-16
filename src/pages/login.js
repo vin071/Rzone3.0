@@ -32,6 +32,7 @@ class Login extends React.Component {
     this.setId = this.setId.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.state = {
+      items: "",
       nusnetId: "",
       password: "",
       fail: false,
@@ -39,6 +40,19 @@ class Login extends React.Component {
       logindata: login_data
     }
   }
+  
+  componentDidMount() {
+        fetch(
+"http://localhost:8080/members")
+            .then((res) => res.json())
+            .then((json) => {
+                this.setState({
+                    items: json,
+                    DataisLoaded: true
+                });
+            })
+    }
+
   setId(val) {
     this.setState({
       nusnetId: val.target.value
