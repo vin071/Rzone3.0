@@ -81,14 +81,14 @@ function MyTable(props) {
                 aria-label='Accept'
                 size='lg'
                 icon={<CheckIcon />}
-                onClick={handleRowAccept(row.name)}
+                // onClick={handleRowAccept(row.name)}
               />
               <IconButton
                 colorScheme='gray'
                 aria-label='Reject'
                 size='lg'
                 icon={<CloseIcon />}
-                onClick={handleRowReject(row.name)}
+                // onClick={handleRowReject(row.name)}
               />
             </Stack>
             </Td>
