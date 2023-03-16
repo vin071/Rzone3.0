@@ -16,6 +16,12 @@ import { useState} from 'react'
 import { Heading, Text } from '@chakra-ui/react'
 import { Box, Flex, Spacer } from '@chakra-ui/react'
 import { Component } from 'react'
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react'
 
 // function MyList(props) {
 //   const myDictionary = {
@@ -42,10 +48,13 @@ class Cca_application extends React.Component {
     super(props)
     this.state = {
       clicked : false,
-      cca_selected: []
+      cca_selected: [],
+      morethansix: false
     }
     this.ccaSelection = this.ccaSelection.bind(this)
     this.setClicked = this.setClicked.bind(this)
+    this.setCcaSelected = this.setCcaSelected.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
   
   setClicked() {
@@ -53,17 +62,37 @@ class Cca_application extends React.Component {
       clicked: !this.state.clicked
     })
   }
+  
+  setCcaSelected(new_arr) {
+    this.setState({
+      cca_selected: new_arr
+    })
+  }
 
-  handleClick(cca) {
+  handleClick(e) {
     // this.setActive(!this.active);
     // this.active = true
     // setClicked(!clicked)
+    const cca = e.target.value;
+    console.log(cca)
     if (this.state.cca_selected.includes(cca)) {
       const index = this.state.cca_selected.indexOf(cca);
       const x = this.state.cca_selected.splice(index, 1)
+      this.setState({
+        morethansix: false
+      })
     } else {
-      this.state.cca_selected.push(cca)
+      if (this.state.cca_selected.length < 6) {
+        const new_ = this.state.cca_selected;
+        new_.push(cca)
+        this.setCcaSelected(new_)        
+      } else {
+        this.setState({
+          morethansix: true
+        })
+      }
     }
+    console.log(this.state.cca_selected)
   };
 
   ccaSelection(cca_list) {
@@ -73,7 +102,7 @@ class Cca_application extends React.Component {
               <Text>{key}</Text>
               <br></br>
               <Box style={{display:"flex", flexWrap: "wrap", flexDirection:"column"}}>
-              {value.map((cca, i) =>{return <Button onClick={this.handleClick(cca)} id={cca} value={cca} variant="ghost" styles={{width:"10vw", margin:"20px", backgroundColor: this.state.clicked ? "white" : "teal"}}>{cca}</Button>})}
+              {value.map((cca, i) =>{return <Button onClick={this.handleClick} id={cca} key={i} value={cca} variant="ghost" styles={{width:"10vw", margin:"20px", backgroundColor: this.state.clicked ? "white" : "teal"}}>{cca}</Button>})}
               </Box>
               </Container>
       cca_render.push(cca_cat)
@@ -91,6 +120,11 @@ class Cca_application extends React.Component {
       "Cultural": ['Culture Committee', 'RH Dance', 'RH Unplugged'],
       "Media": ["AnG", 'Phoenix Press'],
     };
+    const alerttoomany = <Alert status='error'>
+                          <AlertIcon />
+                          <AlertTitle>Too many CCA</AlertTitle>
+                          <AlertDescription>You can only choose six CCA this round.</AlertDescription>
+                        </Alert>
     return (
         <div>
           <Container>
@@ -104,6 +138,7 @@ class Cca_application extends React.Component {
               <FormControl>
               {this.ccaSelection(myDictionary)}
               </FormControl>
+              {this.state.morethansix ? alerttoomany : <p></p>}
               <Button type="submit">Save Selection</Button>
           </Container>
           {/* <Grid templateColumns='repeat(2, 1fr)' gap={6}>
