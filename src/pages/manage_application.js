@@ -86,7 +86,7 @@ class MyTable extends React.Component {
         
         {this.props.data.map((row, index) => (
           // <ButtonGroup variant="ghost" id={row.name}>
-          <Tr className="clickable" key={index} styles={{display:"block"}}>
+          <Tr className="clickable" key={index} styles={{display:"block", backgroundColor: row.offer == 1 ? "teal" : "white"}}>
             <Td>{row.name}</Td>
             <Td>{row.sex}</Td>
             <Td>{row.phone}</Td>
@@ -128,12 +128,12 @@ class Manage_application extends React.Component {
   const curr_cca = "RAG";
   const num_slots = 52;
   const data = [
-    { id: "1", name: 'Alice', sex: "F", phone:845, email: 'alice@example.com', blk: 3, course:"ISE", app_remark: "", offer:0 },
-    { id: "2", name: 'Bob', sex: "M", phone:845, email: 'alice@example.com', blk: 3, course:"ME", app_remark: "", offer:0 },
-    { id: "3", name: 'Charlie', sex: "M", phone:845, email: 'alice@example.com', blk: 3, course:"CS", app_remark: "", offer:0 },
-    { id: "4", name: 'Alice', sex: "F", phone:845, email: 'alice@example.com', blk: 3, course:"ISE", app_remark: "", offer:0 },
-    { id: "5", name: 'Bob', sex: "M", phone:845, email: 'alice@example.com', blk: 3, course:"ME", app_remark: "", offer:0 },
-    { id: "6", name: 'Charlie', sex: "M", phone:845, email: 'alice@example.com', blk: 3, course:"CS", app_remark: "", offer:0 }
+    { id: "1", name: 'Alice', sex: "F", phone:84852145, email: 'alice@example.com', blk: 3, course:"ISE", app_remark: "", offer:0 },
+    { id: "2", name: 'Bob', sex: "M", phone:94562845, email: 'bob@example.com', blk: 8, course:"ME", app_remark: "", offer:1 },
+    { id: "3", name: 'Charlie', sex: "M", phone:87254645, email: 'charlie@example.com', blk: 3, course:"CS", app_remark: "", offer:0 },
+    { id: "4", name: 'Dan', sex: "M", phone:84040005, email: 'dan@example.com', blk: 6, course:"ISE", app_remark: "", offer:0 },
+    { id: "5", name: 'Ellie', sex: "F", phone:87362545, email: 'ellie@example.com', blk: 5, course:"ME", app_remark: "", offer:1 },
+    { id: "6", name: 'Frank', sex: "M", phone:84250135, email: 'frank@example.com', blk: 5, course:"CS", app_remark: "", offer:0 }
   ];
   // 2. Wrap ChakraProvider at the root of your app
   return (
