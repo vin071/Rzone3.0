@@ -41,17 +41,6 @@ class Login extends React.Component {
       logindata: login_data
     }
   }
-  
-  componentDidMount() {
-        fetch(this.state.apiURL)
-            .then((res) => res.json())
-            .then((json) => {
-                this.setState({
-                    items: json,
-                    DataisLoaded: true
-                });
-            })
-    }
 
   setId(val) {
     this.setState({
