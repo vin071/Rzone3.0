@@ -32,6 +32,7 @@ class Login extends React.Component {
     this.setId = this.setId.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.state = {
+      apiURL: "http://localhost:8080/members/login",
       items: "",
       nusnetId: "",
       password: "",
@@ -42,8 +43,7 @@ class Login extends React.Component {
   }
   
   componentDidMount() {
-        fetch(
-"http://localhost:8080/members")
+        fetch(this.state.apiURL)
             .then((res) => res.json())
             .then((json) => {
                 this.setState({
@@ -68,24 +68,30 @@ class Login extends React.Component {
   // const [found, setFound] = useState(false);
     // 2. Wrap ChakraProvider at the root of your app
   handleSubmit() {
-    this.setState({
-      found: false
-    })
-    for (let i=0; i < this.state.logindata.length; i++) {
-      if (this.state.logindata[i]["nusnetid"] == this.state.nusnetid) {
-        if (this.state.logindata[i]["password"] == this.state.password) {
-          this.setState({
-            found: true,
-            fail: false
-          })
-      }
+    const login_val = {
+      "username" : this.state.nusnetId,
+      "password" : this.state.password
     }
-  };
-  if (!this.state.found) {
-    this.setState({
-      fail: true
-    })
-  } 
+    fetch(this.state.apiURL,
+      {method: "POST", mode: 'cors', body:JSON.stringify(login_val)})
+  //   this.setState({
+  //     found: false
+  //   })
+  //   for (let i=0; i < this.state.logindata.length; i++) {
+  //     if (this.state.logindata[i]["nusnetid"] == this.state.nusnetid) {
+  //       if (this.state.logindata[i]["password"] == this.state.password) {
+  //         this.setState({
+  //           found: true,
+  //           fail: false
+  //         })
+  //     }
+  //   }
+  // };
+  // if (!this.state.found) {
+  //   this.setState({
+  //     fail: true
+  //   })
+  // } 
   console.log("Updated")
 }
   render() {
