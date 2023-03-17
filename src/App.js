@@ -9,9 +9,9 @@ class App extends Component {
   render() {
     return (
       <ChakraProvider>
-        {/* <Login /> */}
+        <Login />
         <Cca_application />
-        {/* <Manage_application /> */}
+        <Manage_application />
       </ChakraProvider>
     );
   }
